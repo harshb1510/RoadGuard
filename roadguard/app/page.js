@@ -1,7 +1,21 @@
-import Image from 'next/image'
+import Feed from './components/Feed/Feed.js';
+import Rightbar from './components/Rightbar/Rightbar.js';
+import Sidebar from './components/Sidebar/Sidebar.js';
+import Topbar from './components/Topbar/Topbar.js';
 
-export default function Home() {
+const Home = () => {
   return (
-    <h1>Hello</h1>
-  )
-}
+    <>
+
+    <Topbar/>
+    <div className="flex w-full">
+      <Sidebar/>
+      <Feed/>
+      <Rightbar/>
+      </div>
+    </>
+    
+  );
+};
+
+export default Home;
