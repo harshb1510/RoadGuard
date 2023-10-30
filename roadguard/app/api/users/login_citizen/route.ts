@@ -1,14 +1,14 @@
 import {connect} from "../../../../dbConfig/dbConfig";
-import User from "../../../../Models/userModel.js";
+import User from "../../../../Models/userModel";
 import { NextRequest,NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
-
 connect();
 export async function POST(request: NextRequest) {
     try{
+        console.log("hi");
         const reqBody=await request.json();
         const {email,password}=reqBody;
         console.log(reqBody);
@@ -23,7 +23,6 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({error:"Invalid password"},  {status:400})
         }
 
-        //token
 
         const tokenData={
             id:user._id,

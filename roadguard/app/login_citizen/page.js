@@ -16,8 +16,10 @@ const CitizenLogin = () => {
 
   const onLogin=async(e)=>{
     try{
+    
       e.preventDefault();
-      const response=await axios.post('api/users/login_citizen',user);
+      console.log(user)
+      const response=await axios.post('/api/users/login_citizen',user);
       console.log("Login Success",response.data)
       router.push('/')
       
