@@ -4,32 +4,25 @@ import { useAccordion } from "@nextui-org/react";
 import axios from "axios";
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { set } from "mongoose";
 
 const Topbar = () => {
 
   const [name, setName] = useState("");
-  // useEffect(() => {
-  //     try {
-  //       const res = axios.get("/api/users/getuser");
-  //       // setName(res.data);
-  //       setName(res.data.username);
-  //       // console.log(res.data.username);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  // }, [name])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("/api/users/getuser");
+        setName(res.data.username);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData(); 
+  }, []); 
+
   
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const res = await axios.get("/api/users/getuser");
-      console.log(res.data.username);
-      setName(res.data.username);
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
 
 
@@ -41,12 +34,7 @@ const Topbar = () => {
         <Link href="/" style={{ textDecoration: "none" }}>
           <span className="text-white text-lg ml-4 font-bold cursor-pointer">RoadGuard</span>
         </Link>
-        <button 
-        onClick={handleSubmit}
-         >
-          <Chat className="text-white ml-4" />
-          
-        </button>
+       
       </div>
       <div className="flex-5">
         <div className="w-full h-8 bg-white rounded-full flex items-center">
@@ -62,7 +50,7 @@ const Topbar = () => {
         <div className="flex items-center justify-end">
           <Link href="/profile">
             <div className="flex items-center cursor-pointer">
-              <h3 className="text-white">Hi! I am {name} </h3>
+              <h3 className="text-white">Hi! {name} </h3>
               <img src="/assets/person/11.jpeg" alt="" className="w-8 h-8 rounded-full ml-2 cursor-pointer" />
             </div>
           </Link>
