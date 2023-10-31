@@ -4,14 +4,9 @@ import Topbar from '../components/Topbar';
 import { useRouter } from 'next/navigation';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from 'axios';
-import { user } from '@nextui-org/react';
-import { ConstructionOutlined } from '@mui/icons-material';
 
 const Profile = () => {
   const router = useRouter();
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
