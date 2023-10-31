@@ -1,39 +1,113 @@
-import PermMediaIcon from '@mui/icons-material/PermMedia';
-import LabelIcon from '@mui/icons-material/Label';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
+"use client";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import PermMediaIcon from "@mui/icons-material/PermMedia";
 
 export default function Share() {
+  // const [image, setImage] = useState("");
+  const [post, setPost] = useState({
+    username: "",
+    profileImage: "",
+    caption: "",
+    photo: "",
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("/api/users/getuser");
+        setPost({...post,profileImage:res.data.profileImage,username:res.data.username})
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  const handleFileUpload = async(e) => {
+    const image = e.target.files[0];
+
+    const formData = new FormData();
+    formData.set('image', image)
+
+    axios.post("https://api.imgbb.com/1/upload?key=c1e87660595242c0175f82bb850d3e15", formData)
+      .then(res => {
+        const url = res.data.data.display_url;
+        setPost({...post,photo:url})
+      }
+      )
+      .catch((error) => {
+        console.log(error);
+      }
+      )
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/api/posts/create", post);
+      console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
+
+
   return (
+    <form onSubmit={handleSubmit} >
     <div className="w-full h-170 rounded-lg shadow-lg p-5">
       <div className="p-5">
         <div className="flex items-center">
-          <img className="w-12 h-12 rounded-full object-cover mr-2" src="/assets/person/11.jpeg" alt="" />
-          <input placeholder="What is in your mind" className="w-80 border-none focus:outline-none" />
+          {post.profileImage ? (
+            <img
+              src={post.profileImage}
+              alt=""
+              className="w-12 h-12 rounded-full mr-2 cursor-pointer"
+            />
+          ) : (
+            <img
+              className="w-12 h-12 rounded-full object-cover mr-2"
+              src="/assets/person/11.jpeg"
+              alt=""
+            />
+          )}
+          <input
+            type="text"
+            placeholder="What's happening?"
+           onChange={(e)=>setPost({...post,caption:e.target.value})}
+            required
+            className="w-80 border-none focus:outline-none"
+          />
         </div>
         <hr className="my-5" />
         <div className="flex items-center justify-between">
           <div className="flex ml-5">
             <div className="flex items-center mr-3 cursor-pointer">
               <PermMediaIcon htmlColor="tomato" className="text-lg mr-1" />
-              <span className="text-base font-semibold">Photo/Video</span>
-            </div>
-            <div className="flex items-center mr-3 cursor-pointer">
-              <LabelIcon htmlColor="blue" className="text-lg mr-1" />
-              <span className="text-base font-semibold">Tag</span>
-            </div>
-            <div className="flex items-center mr-3 cursor-pointer">
-              <LocationOnIcon htmlColor="green" className="text-lg mr-1" />
-              <span className="text-base font-semibold">Location</span>
-            </div>
-            <div className="flex items-center cursor-pointer">
-              <EmojiEmotionsIcon htmlColor="gold" className="text-lg mr-1" />
-              <span className="text-base font-semibold">Feelings</span>
+              <span className="text-base font-semibold">
+              <input
+                  type='file'
+                  accept="image/*"
+                  className='hidden'
+                  onChange={handleFileUpload}
+                />
+                Photo/Video
+                </span>
             </div>
           </div>
-          <button className="border-none py-2 px-3 rounded-md bg-green-500 font-semibold cursor-pointer text-white">Post</button>
+          <button type="submit" 
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-5 py-2 rounded-full"
+          >
+            Post
+          </button>
         </div>
       </div>
     </div>
-  )
+    </form>
+  );
 }

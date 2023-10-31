@@ -8,12 +8,14 @@ import Link from "next/link"
 const Topbar = () => {
 
   const [name, setName] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get("/api/users/getuser");
         setName(res.data.username);
+setImage(res.data.profileImage);
       } catch (err) {
         console.log(err);
       }
@@ -51,7 +53,18 @@ const Topbar = () => {
           <Link href="/profile">
             <div className="flex items-center cursor-pointer">
               <h3 className="text-white">Hi! {name} </h3>
+              {image ? (
+                <img
+                  src={image}
+                  alt=""
+                  className="w-8 h-8 rounded-full ml-2 cursor-pointer"
+                />
+              ) : (
+              
               <img src="https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png" alt="" className="w-8 h-8 rounded-full ml-2 cursor-pointer" />
+              )
+              }
+  
             </div>
           </Link>
         </div>

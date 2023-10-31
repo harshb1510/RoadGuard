@@ -4,16 +4,19 @@ import Topbar from '../components/Topbar';
 import { useRouter } from 'next/navigation';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from 'axios';
+import { user } from '@nextui-org/react';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 const Profile = () => {
   const router = useRouter();
   const [showOptions, setShowOptions] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [showCameraIcon, setShowCameraIcon] = useState(false);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
+  const [image, setImage] = useState("");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +25,8 @@ const Profile = () => {
         setName(res.data.username);
         setEmail(res.data.email);
         setId(res.data.id);
+        setImage(res.data.profileImage);
+        console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -42,12 +47,17 @@ const Profile = () => {
             const url = res.data.data.display_url;
            
             const userProfileImage = {
-              email: email,
               profileImage: url,
             }
+
             if (url) {
-                const response= axios.post(`/api/users/userUpdate/${id}`, url);
-                console.log(response);
+                try {
+                    const response= axios.post("/api/users/profile", userProfileImage);
+                    console.log(response);
+                    window.location.reload();
+                } catch (error) {
+                    console.log(error.message);
+                }
             }
     
           })
@@ -71,29 +81,34 @@ const Profile = () => {
     }
   };
 
+  console.log(image);
+  console.log(email);
+  
   return (
     <>
       <Topbar />
       <div className='flex items-center justify-around m-auto pt-[150px]'>
         <div className='relative'>
-          {showCameraIcon && (
+         
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-full bg-gray-800 bg-opacity-50">
               <CameraAltIcon sx={{ fontSize: 72, color: 'white' }} />
             </div>
-          )}
-          {selectedImage ? (
+        
+           {(image) ? (
             <img
               className='h-[250px] w-[250px] object-contain rounded-full cursor-pointer'
-              src={selectedImage}
+              src={image}
               alt=""
             />
-          ) : (
+            ) : (
             <img
               className='h-[250px] w-[250px] object-contain rounded-full cursor-pointer'
               src="https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png" 
               alt=""
             />
-          )}
+            )}
+            
+          
          
             <div className='absolute bg-white border border-gray-200 shadow-md mt-2 rounded p-2'>
               <label className='cursor-pointer block text-blue-600'>
