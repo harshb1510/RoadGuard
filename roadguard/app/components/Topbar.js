@@ -51,7 +51,7 @@ const Topbar = () => {
           <Link href="/profile">
             <div className="flex items-center cursor-pointer">
               <h3 className="text-white">Hi! {name} </h3>
-              <img src="/assets/person/11.jpeg" alt="" className="w-8 h-8 rounded-full ml-2 cursor-pointer" />
+              <img src="https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png" alt="" className="w-8 h-8 rounded-full ml-2 cursor-pointer" />
             </div>
           </Link>
         </div>

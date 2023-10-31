@@ -31,7 +31,7 @@ export default function Share() {
               <span className="text-base font-semibold">Feelings</span>
             </div>
           </div>
-          <button className="border-none py-2 px-3 rounded-md bg-green-500 font-semibold cursor-pointer text-white">Share</button>
+          <button className="border-none py-2 px-3 rounded-md bg-green-500 font-semibold cursor-pointer text-white">Post</button>
         </div>
       </div>
     </div>
