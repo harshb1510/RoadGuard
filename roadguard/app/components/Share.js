@@ -4,7 +4,7 @@ import axios from "axios";
 import PermMediaIcon from "@mui/icons-material/PermMedia";
 
 export default function Share() {
-  // const [image, setImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [post, setPost] = useState({
     username: "",
     profileImage: "",
@@ -89,15 +89,17 @@ export default function Share() {
           <div className="flex ml-5">
             <div className="flex items-center mr-3 cursor-pointer">
               <PermMediaIcon htmlColor="tomato" className="text-lg mr-1" />
-              <span className="text-base font-semibold">
+              <label className="text-base font-semibold">
+              {
+                        isLoading ? <p>Uploading Image</p> : <p>{post.photo ? 'Image Uploaded' : <p>Photo/Video</p>}</p>
+              }
               <input
                   type='file'
                   accept="image/*"
                   className='hidden'
                   onChange={handleFileUpload}
                 />
-                Photo/Video
-                </span>
+                </label>
             </div>
           </div>
           <button type="submit" 
