@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     profileImage: {
         type: String,
     },
-    roomno: {
+    type: {
         type: String,
     },
     hostel: {
@@ -26,9 +26,8 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String,
     },
-    isOutside: {
-        type: Boolean,
-        default: false,
+    address: {
+        type: String,
     },
 })
 

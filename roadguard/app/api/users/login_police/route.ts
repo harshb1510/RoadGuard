@@ -30,6 +30,7 @@ export async function POST(request: NextRequest) {
             email:user.email,
             type:user.type,
         }
+        
         const token=await jwt.sign(tokenData,process.env.TOKEN_SECRET,{
             expiresIn:"1d"
         })
@@ -49,21 +50,3 @@ export async function POST(request: NextRequest) {
             {status:500})
 }
 }
-
-export async function GET() {
-    try {
-        const response = NextResponse.json(
-            {
-                message: "Logout successful",
-                success: true,
-            }
-        )
-        response.cookies.set("token", "", 
-        { httpOnly: true, expires: new Date(0) 
-        });
-        return response;
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-        
-    }

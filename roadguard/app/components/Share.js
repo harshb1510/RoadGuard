@@ -72,7 +72,7 @@ export default function Share() {
           ) : (
             <img
               className="w-12 h-12 rounded-full object-cover mr-2"
-              src="/assets/person/11.jpeg"
+              src="https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png"
               alt=""
             />
           )}
