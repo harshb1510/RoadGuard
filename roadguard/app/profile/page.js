@@ -16,6 +16,8 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [image, setImage] = useState("");
+  const [vehicle, setVehicle] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
 
 
   useEffect(() => {
@@ -87,7 +89,7 @@ const Profile = () => {
   return (
     <>
       <Topbar />
-      <div className='flex items-center justify-around m-auto pt-[150px]'>
+      <div className='flex items-center justify-around m-auto pt-[100px]'>
         <div className='relative'>
          
             <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center rounded-full bg-gray-800 bg-opacity-50">
@@ -125,12 +127,46 @@ const Profile = () => {
             </div>
           
         </div>
-        <div className='mr-10'>
-          <h1 className='text-3xl font-bold'>Profile</h1>
-          <div className='flex items-center justify-evenly'>
-            <h2 className='pt-[100px] pr-[100px] pb-[100px]'>Username</h2>
-            <h2>Info</h2>
+       <div className='mr-10 border-8 border-red-400 grid items-center p-10'>
+          <h1 className='text-4xl font-bold text-center'>Profile Info</h1>
+          <div className='flex items-center justify-evenly gap-10'>
+            <div className='grid pt-[50px] items-center text-center'>
+            <h1 className='text-2xl font-extrabold '>Username</h1>
+            <h2 className='  pb-[50px] '>{name}</h2>
+            </div>
+            <div className='grid pt-[50px] text-center'>
+            <h1 className='text-2xl font-extrabold'>Email</h1>
+            <h2 className='  pb-[50px] '>{email}</h2>
+            </div>
           </div>
+          <form action="" onSubmit={handleFileUpload}>
+            <div className='flex  text-center'>
+            <h1 className='text-2xl font-extrabold pr-2'>Vehicle:</h1>
+              <input
+                type='text'
+                placeholder='Vehicle Registration No.'
+                value={vehicle}
+                id="vehicle"
+                onChange={(e) => setVehicle(e.target.value)}
+              />
+            </div>
+            <div className='flex text-center pb-5'>
+              <h1 className='text-2xl font-extrabold pr-2'>Phone:</h1>
+              <input
+                type='text'
+                placeholder='Phone Number'
+                value={phoneNumber}
+                id='phoneNumber'
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+            </div>
+            <button
+            type='submit'
+            className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded"
+            >
+            Save Profile
+          </button>
+            </form>
           <button
             onClick={logout}
             className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded"

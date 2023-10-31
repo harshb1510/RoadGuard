@@ -26,6 +26,9 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: String,
     },
+    vehicle:{
+        type: String,
+    },
     address: {
         type: String,
     },
