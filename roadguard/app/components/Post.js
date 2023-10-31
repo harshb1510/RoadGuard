@@ -16,10 +16,8 @@ const Post = ({p}) => {
               <span className="postUsername text-lg font-semibold">
                 {username}
               </span>
-              {/* <span className="postDate text-sm">{post.date}</span> */}
             </div>
             <div className="postTopRight">
-              <MoreVertIcon />
             </div>
           </div>
           <div className="postCenter my-5">
