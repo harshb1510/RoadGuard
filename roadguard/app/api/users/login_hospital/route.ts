@@ -15,13 +15,12 @@ export async function POST(request: NextRequest) {
 
         const user=await User.findOne({email});
         if(!user){
-            return NextResponse.json({error:"User not found"},  
-            {status:400})
+            return NextResponse.json({error:"User not found"},  {status:400})
         }
 
         const validPassword=await bcryptjs.compare(password,user.password);
         if(!validPassword){
-            return NextResponse.json({error:"Invalid credentials"},  {status:401})
+            return NextResponse.json({error:"Invalid password"},  {status:400})
         }
 
 
@@ -37,7 +36,6 @@ export async function POST(request: NextRequest) {
         const response=NextResponse.json({
             message:"Login successful",
             success:true,
-            status:200
         })
         
         response.cookies.set("token",token,{

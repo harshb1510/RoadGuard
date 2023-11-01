@@ -1,8 +1,35 @@
 // pages/signup/citizen.js
+"use client";
+
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import {useRouter} from 'next/navigation';
+import axios from 'axios';
+
+
 
 const HospitalSignup = () => {
+  const router=useRouter();
+  const [user,setUser]= React.useState({
+    username:"",
+    email:"",
+    password:"",
+  })
+
+  const onSignUp=async(e)=>{
+    try {
+      e.preventDefault();
+      const response = await axios.post("/api/users/signup_hospital",user)
+      console.log("hiii")
+      router.push("/login_hospital");
+      console.log("signed up successfully",response.data);
+    
+    } catch (error) {
+      console.log("Signed up failed",error.message);
+    }
+    
+      }
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
     <Head>
@@ -35,23 +62,32 @@ const HospitalSignup = () => {
    
     <main className="bg-white p-8 rounded shadow-md">
       <h1 className="text-2xl font-bold mb-4">Hospital Signup</h1>
-      <form className="flex flex-col space-y-4">
+      <form className="flex flex-col space-y-4" onSubmit={onSignUp}>
         <input
           type="text"
           placeholder="Full Name"
           className="border p-2 rounded"
+          id="username"
+          onChange={(e)=>setUser({...user,username:e.target.value})}
+          value={user.username}
           // Add state and event handlers for form fields
         />
         <input
           type="email"
           placeholder="Email"
           className="border p-2 rounded"
+          id="email"
+          onChange={(e)=>setUser({...user,email:e.target.value})}
+          value={user.email}
           // Add state and event handlers for form fields
         />
         <input
           type="password"
           placeholder="Password"
           className="border p-2 rounded"
+          id="password"
+          onChange={(e)=>setUser({...user,password:e.target.value})}
+          value={user.password}
           // Add state and event handlers for form fields
         />
         <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">

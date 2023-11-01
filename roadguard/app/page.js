@@ -7,6 +7,7 @@ import Topbar from './components/Topbar.js';
 const Home = () => {
   return (
     <>
+    <Topbar/>
     <div className="flex w-full">
       <Sidebar/>
       <Feed/>

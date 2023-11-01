@@ -1,8 +1,32 @@
 // pages/index.js
+"use client"
+
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+
+
 
 const Home = () => {
+  const router=useRouter();
+  const [user,setUser]= React.useState({
+    email:"",
+    password:"",
+  })
+
+  const onLogin=async(e)=>{
+    e.preventDefault();
+    try{
+      const response=await axios.post('/api/users/login_police',user);
+      console.log("Login Success",response.data)
+      router.push('/');
+
+    }catch(error){
+      console.log("Login Failed",error.message);
+    }
+  }
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
       <Head>
@@ -34,7 +58,7 @@ const Home = () => {
      
       <main className="bg-white p-8 rounded shadow-md">
         <h1 className="text-2xl font-bold mb-4">Police Login</h1>
-        <form className="flex flex-col space-y-4">
+        <form className="flex flex-col space-y-4" onSubmit={onLogin}>
           {/* <input
             type="text"
             placeholder="Full Name"
@@ -45,12 +69,18 @@ const Home = () => {
             type="email"
             placeholder="Email"
             className="border p-2 rounded"
+            value={user.email}
+            id="email"
+            onChange={(e)=>setUser({...user,email:e.target.value})}
             // Add state and event handlers for form fields
           />
           <input
             type="password"
             placeholder="Password"
             className="border p-2 rounded"
+            value={user.password}
+            id="password"
+            onChange={(e)=>setUser({...user,password:e.target.value})}
             // Add state and event handlers for form fields
           />
           <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
