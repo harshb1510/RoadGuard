@@ -34,6 +34,8 @@ export async function GET(request : NextRequest) {
         username: user.username,
         email: user.email,
         profileImage: user.profileImage,
+        vehicle:user.vehicle,
+        phoneNumber:user.phoneNumber
       },
     );
   } catch (error) {

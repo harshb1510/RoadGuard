@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     hostel: {
         type: String,
     },
-    phone: {
+    phoneNumber: {
         type: String,
     },
     vehicle:{
