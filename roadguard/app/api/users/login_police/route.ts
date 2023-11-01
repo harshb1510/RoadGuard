@@ -28,6 +28,7 @@ export async function POST(request: NextRequest) {
             id:user._id,
             username:user.username,
             email:user.email,
+            type:user.type,
         }
         
         const token=await jwt.sign(tokenData,process.env.TOKEN_SECRET,{
@@ -49,3 +50,4 @@ export async function POST(request: NextRequest) {
             {status:500})
 }
 }
+

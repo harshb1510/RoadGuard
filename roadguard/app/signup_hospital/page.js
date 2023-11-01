@@ -16,6 +16,7 @@ const HospitalSignup = () => {
     username:"",
     email:"",
     password:"",
+    type:"3",
   })
 
   const onSignUp=async(e)=>{

@@ -6,7 +6,7 @@ import { Alert, AlertTitle } from "@mui/material";
 
 export default function Sidebar() {
   return (
-    <div className="flex-3 h-screen sticky top-16 overflow-y-scroll">
+    <div className="flex-3 h-screen sticky top-16 ">
       <div className="p-5 pr-[200px]">
         <ul className="p-0 m-0 list-none">
           <li className="flex items-center mb-5">

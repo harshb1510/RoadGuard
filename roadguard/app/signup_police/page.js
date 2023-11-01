@@ -7,13 +7,14 @@ import {useRouter} from 'next/navigation';
 import axios from 'axios';
 import toast,{Toaster} from 'react-hot-toast';
 
+
 const PoliceSignup = () => {
   const router=useRouter();
   const [user,setUser]= React.useState({
     username:"",
     email:"",
     password:"",
-    
+    type:"2",
   })
 
   const onSignUp=async(e)=>{
@@ -23,7 +24,7 @@ const PoliceSignup = () => {
       toast.success("Sign up Successfully")
       router.push("/login_police");
       console.log("signed up successfully",response.data);
-      
+
 
     }catch(error){
       console.log("Signed up failed",error.message);
