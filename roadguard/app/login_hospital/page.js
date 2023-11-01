@@ -6,7 +6,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-// import { toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
+
 
 const Home = () => {
 
@@ -21,7 +22,8 @@ const Home = () => {
       e.preventDefault()
       const response=await axios.post('/api/users/login_hospital',user);
       console.log("Login Success",response.data)
-      // toast.success("Login Success")
+      toast.success("Login Success")
+
       router.push('/');
     }
     catch(error){

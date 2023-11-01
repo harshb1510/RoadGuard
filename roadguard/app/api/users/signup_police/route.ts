@@ -1,3 +1,4 @@
+
 import {connect} from "../../../../dbConfig/dbConfig";
     import User from "../../../../Models/userModel";
     import { NextRequest,NextResponse } from "next/server";
@@ -8,6 +9,7 @@ import {connect} from "../../../../dbConfig/dbConfig";
     export async function POST(request:NextRequest){
         try {
             const reqBody=await request.json();
+
             const {username,email,password,type}=reqBody; 
             console.log(reqBody);
 

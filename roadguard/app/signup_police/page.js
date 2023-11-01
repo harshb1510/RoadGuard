@@ -5,6 +5,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import axios from 'axios';
+import {toast} from 'react-hot-toast';
+
 
 const PoliceSignup = () => {
   const router=useRouter();
@@ -21,6 +23,7 @@ const PoliceSignup = () => {
       const response=await axios.post("/api/users/signup_police",user);
       router.push("/login_police");
       console.log("signed up successfully",response.data);
+
 
     }catch(error){
       console.log("Signed up failed",error.message);
