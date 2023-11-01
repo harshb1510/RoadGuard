@@ -91,7 +91,7 @@ export default function Share() {
               <PermMediaIcon htmlColor="tomato" className="text-lg mr-1" />
               <label className="text-base font-semibold">
               {
-                        isLoading ? <p>Uploading Image</p> : <p>{post.photo ? 'Image Uploaded' : <p>Photo/Video</p>}</p>
+                        isLoading ? <p>Uploading Image</p> : <p>{post.photo ? 'Image Uploaded' : 'Photo/Video'}</p>
               }
               <input
                   type='file'

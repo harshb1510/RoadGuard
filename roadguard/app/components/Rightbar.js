@@ -1,4 +1,6 @@
-export default function Rightbar() {
+import React from 'react'
+
+const Rightbar = () => {
   return (
     <div className="flex-3.5">
       <div className="p-5">
@@ -7,5 +9,7 @@ export default function Rightbar() {
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default Rightbar

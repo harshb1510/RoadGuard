@@ -9,7 +9,6 @@ export async function GET(request: NextRequest) {
     const posts = await Post.find();
     return NextResponse.json(posts, { status: 200 });
   } catch (error) {
-    // Handle errors and return appropriate response
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

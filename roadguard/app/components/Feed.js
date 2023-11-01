@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -25,9 +25,12 @@ export default function Feed() {
     <div className="flex-5.5">
       <div className="pt-15 pl-10">
         <Share />
-        {posts.map((p) => (
-          <Post key={p._id} p={p} />
-        ))}
+        {posts
+          .slice()
+          .reverse()
+          .map((p) => (
+            <Post key={p._id} p={p} />
+          ))}
       </div>
     </div>
   );

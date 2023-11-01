@@ -1,53 +1,52 @@
-import React from 'react'
+import React from "react";
 
-const Post = ({p}) => {
-
-  const { username, photo, caption, profileImage } = p
+const Post = ({ p }) => {
+  const { username, photo, caption, profileImage } = p;
 
   return (
-    <>
-    <div className="postTop flex items-center justify-between">
-            <div className="postTopLeft flex items-center">
-              <img
-                className="postProfileImg w-8 h-8 rounded-full"
-                src={profileImage}
-                alt=""
-              />
-              <span className="postUsername text-lg font-semibold">
-                {username}
-              </span>
-            </div>
-            <div className="postTopRight">
-            </div>
-          </div>
-          <div className="postCenter my-5">
-            <span className="postText">{caption}</span>
+    <div className="post w-full rounded-lg shadow-lg my-8">
+      <div className="postWrapper p-4">
+        <div className="postTop flex items-center justify-between">
+          <div className="postTopLeft flex items-center">
+            {/* <img className="w-12 h-12 rounded-full mr-4" src={profileImage} alt="" /> */}
             <img
-              className="postImg mt-5 w-full max-h-96 object-contain"
-              src={photo}
+              className="w-12 h-12 rounded-full mr-4"
+              src={
+                profileImage ||
+                "https://conservation-innovations.org/wp-content/uploads/2019/09/Dummy-Person.png"
+              }
               alt=""
             />
+            <span className="text-lg font-semibold">{username}</span>
+            {/* <span className="text-sm">{date}</span> */}
           </div>
-          <div className="postBottom flex items-center justify-between">
-            <div className="postBottomLeft flex items-center">
-              <img
-                // src={likes[post.id] ? "assets/heart.png" : "assets/like.png"}
-                alt=""
-                className="likeIcon w-6 h-6 cursor-pointer"
-                // onClick={() => likeHandler(post.id)}
-              />
-              <span className="postlikeCounter text-base">
-                {/* {likes[post.id] ? "You and others like it" : "Others like it"} */}
-              </span>
-            </div>
-            <div className="postBottomRight">
-              <span className="postCommentText cursor-pointer border-b border-dashed border-gray-400">
-                {/* {post.comment} comments */}
-              </span>
-            </div>
+          <div className="postTopRight">{/* MoreVertIcon */}</div>
+        </div>
+        <div className="postCenter my-5">
+          <span className="block mb-5">{caption}</span>
+          <img className="w-full max-h-96 object-contain" src={photo} alt="" />
+        </div>
+        <div className="postBottom flex items-center justify-between">
+          <div className="flex items-center">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHsDY_twtw7I4JChiQwdWKckyXI_Ec8iXFirbcepLQAA&s"
+              alt=""
+              className="w-6 h-6 cursor-pointer mr-2"
+            />
+            <img
+              src="https://w7.pngwing.com/pngs/140/830/png-transparent-like-logo-facebook-like-button-facebook-like-button-computer-icons-like-miscellaneous-blue-text-thumbnail.png"
+              alt=""
+              className="w-6 h-6 cursor-pointer mr-2"
+            />
+            {/* <span className="text-base">{like} people like it</span> */}
           </div>
-          </>
-  )
-}
+          <div>
+            {/* <span className="cursor-pointer border-b border-dashed border-gray-400">{comment} comments</span> */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Post
+export default Post;
