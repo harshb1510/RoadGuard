@@ -1,4 +1,5 @@
-    import {connect} from "../../../../dbConfig/dbConfig";
+
+import {connect} from "../../../../dbConfig/dbConfig";
     import User from "../../../../Models/userModel";
     import { NextRequest,NextResponse } from "next/server";
     import bcryptjs from "bcryptjs";
@@ -8,7 +9,8 @@
     export async function POST(request:NextRequest){
         try {
             const reqBody=await request.json();
-            const {username,email,password}=reqBody; 
+
+            const {username,email,password,type}=reqBody; 
             console.log(reqBody);
 
             const user= await User.findOne({email});
@@ -24,7 +26,7 @@
                 username,
                 email,
                 password:hashedPassword,
-                type:2
+                type
             })
             const savedUser=await newUser.save();
             console.log(savedUser);

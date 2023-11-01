@@ -15,11 +15,24 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide a password"],
     },
-    // mobile:{
-    //     type:Number,
-    //     required:[true,"Please provide a mobile number"],
-    // }
- 
+    profileImage: {
+        type: String,
+    },
+    type: {
+        type: String,
+    },
+    hostel: {
+        type: String,
+    },
+    phone: {
+        type: String,
+    },
+    vehicle:{
+        type: String,
+    },
+    address: {
+        type: String,
+    },
 })
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);
