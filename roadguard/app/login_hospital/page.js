@@ -6,7 +6,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-// import { toast } from 'react-hot-toast';
+import toast,{Toaster} from 'react-hot-toast';
+
 
 const Home = () => {
 
@@ -21,11 +22,14 @@ const Home = () => {
       e.preventDefault()
       const response=await axios.post('/api/users/login_hospital',user);
       console.log("Login Success",response.data)
-      // toast.success("Login Success")
+      toast.success("Login Success")
+
       router.push('/');
     }
     catch(error){
       console.log("Login Failed",error.message);
+      toast.error("Invalid Credentials")
+
     }
   }
   return (
@@ -88,6 +92,31 @@ const Home = () => {
           <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
             Login
           </button>
+          <Toaster
+  position="top-center"
+  reverseOrder={false}
+  gutter={8}
+  containerClassName=""
+  containerStyle={{}}
+  toastOptions={{
+    // Define default options
+    className: '',
+    duration: 2000,
+    style: {
+      background: '#363636',
+      color: '#fff',
+    },
+
+    // Default options for specific types
+    success: {
+      duration: 3000,
+      theme: {
+        primary: 'green',
+        secondary: 'black',
+      },
+    },
+  }}
+/>
         </form>
         <h1 className='pt-2'>Dont have account? <Link className='text-blue-700 hover:text-blue-500' href="/signup_hospital">Sign Up</Link> </h1>
 

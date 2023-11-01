@@ -5,6 +5,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 import axios from 'axios';
+import toast,{Toaster} from 'react-hot-toast';
+
 
 const PoliceSignup = () => {
   const router=useRouter();
@@ -19,11 +21,14 @@ const PoliceSignup = () => {
     e.preventDefault();
     try {
       const response=await axios.post("/api/users/signup_police",user);
+      toast.success("Sign up Successfully")
       router.push("/login_police");
       console.log("signed up successfully",response.data);
 
+
     }catch(error){
       console.log("Signed up failed",error.message);
+      toast.error("Signup Failed")
     }
   }
       
@@ -91,6 +96,31 @@ const PoliceSignup = () => {
         <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
           Signup
         </button>
+        <Toaster
+  position="top-center"
+  reverseOrder={false}
+  gutter={8}
+  containerClassName=""
+  containerStyle={{}}
+  toastOptions={{
+    // Define default options
+    className: '',
+    duration: 2000,
+    style: {
+      background: '#363636',
+      color: '#fff',
+    },
+
+    // Default options for specific types
+    success: {
+      duration: 3000,
+      theme: {
+        primary: 'green',
+        secondary: 'black',
+      },
+    },
+  }}
+/>
       </form>
       <h1 className='pt-2'>Have account? <Link className='text-blue-700 hover:text-blue-500' href="/signup_police">Sign In</Link> </h1>
 
