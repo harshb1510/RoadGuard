@@ -16,6 +16,7 @@ const CitizenSignup = () => {
     email:"",
     password:"",
     type:"1",
+    paid:"false"
   })
 
   const onSignUp=async(e)=>{

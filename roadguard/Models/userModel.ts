@@ -21,9 +21,10 @@ const userSchema = new mongoose.Schema({
     type: {
         type: String,
     },
-    hostel: {
-        type: String,
-    },
+    paid: {
+        type: Boolean,
+        default: false,
+      },
     phoneNumber: {
         type: String,
     },

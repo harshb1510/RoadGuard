@@ -29,6 +29,12 @@ export default function Sidebar() {
             </Link>
           </li>
           <li className="flex items-center mb-5">
+            <AddAlert className="text-2xl mr-3" />
+            <Link href='complaint'>
+            <button className="text-base font-semibold">Complaint</button>
+            </Link>
+          </li>
+          <li className="flex items-center mb-5">
             <Group className="text-2xl mr-3" />
             <button className="text-base font-semibold">Trending</button>
           </li>
