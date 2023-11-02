@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     }
     
     const reqBody = await request.json();
-    const { profileImage, vehicle, phoneNumber } = reqBody;
+    const { profileImage, vehicle, phoneNumber , paid } = reqBody;
     console.log(reqBody)
     
     const token = request.cookies.get('token')?.value || '';
@@ -39,6 +39,9 @@ export async function POST(request: NextRequest) {
 
     if (phoneNumber) {
       user.phoneNumber = phoneNumber;
+    }
+    if (paid) {
+      user.paid = paid;
     }
     
     await user.save();

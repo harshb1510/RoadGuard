@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "dbConfig/dbConfig.js", "app/api/users/getuser/route.ts"  ],
+, "dbConfig/dbConfig.js", "app/api/users/getuser/route.ts", "app/api/users/checkout/route.js"  ],
   "exclude": [
     "node_modules"
   ]

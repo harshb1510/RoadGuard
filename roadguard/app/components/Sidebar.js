@@ -1,49 +1,63 @@
-import { AddAlert, ChatSharp, Group, MonetizationOn } from "@mui/icons-material";
-import RssFeedIcon from '@mui/icons-material/RssFeed';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+"use client"
+import { AddAlert, Group, MonetizationOn, RssFeed } from "@mui/icons-material";
 import Link from "next/link";
-import { Alert, AlertTitle } from "@mui/material";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Sidebar() {
+  const [type, setType] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("/api/users/getuser");
+        setType(res.data.type);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const sidebarItems = {
+    1: [
+      { icon: <RssFeed />, text: "Feed", link: "/Feeds" },
+      { icon: <MonetizationOn />, text: "E-Challan", link: "e-challan" },
+      { icon: <AddAlert />, text: "Complaint", link: "complaint" },
+      { icon: <Group />, text: "Trending", link: "#" },
+    ],
+    2: [
+      { icon: <RssFeed />, text: "Feed", link: "/Feeds" },
+      { icon: <MonetizationOn />, text: "E-Challan", link: "e-challan" },
+      { icon: <AddAlert />, text: "Alerts", link: "e-challan" },
+      { icon: <Group />, text: "Trending", link: "#" },
+    ],
+    3: [
+      { icon: <RssFeed />, text: "Feed", link: "/Feeds" },
+      { icon: <MonetizationOn />, text: "Hospital Ambulance", link: "e-challan" },
+      { icon: <AddAlert />, text: "Alerts", link: "e-challan" },
+      { icon: <AddAlert />, text: "Complaint", link: "complaint" },
+      { icon: <Group />, text: "Trending", link: "#" },
+    ],
+  };
+
   return (
-    <div className="flex-3 h-screen sticky top-16 ">
+    <div className="flex-3 h-screen sticky top-16">
       <div className="p-5 pr-[200px]">
         <ul className="p-0 m-0 list-none">
-          <li className="flex items-center mb-5">
-            <RssFeedIcon className="text-2xl mr-3" />
-           <Link href='/Feeds'>
-           <button className="text-base font-semibold">Feed</button>
-           </Link> 
-          </li>
-          
-          <li className="flex items-center mb-5">
-            <MonetizationOn className="text-2xl mr-3" />
-            <Link href='e-challan'>
-            <button className="text-base font-semibold">E-Challan</button>
-            </Link>
-          </li>
-          <li className="flex items-center mb-5">
-            <AddAlert className="text-2xl mr-3" />
-            <Link href='e-challan'>
-            <button className="text-base font-semibold">Alerts</button>
-            </Link>
-          </li>
-          <li className="flex items-center mb-5">
-            <AddAlert className="text-2xl mr-3" />
-            <Link href='complaint'>
-            <button className="text-base font-semibold">Complaint</button>
-            </Link>
-          </li>
-          <li className="flex items-center mb-5">
-            <Group className="text-2xl mr-3" />
-            <button className="text-base font-semibold">Trending</button>
-          </li>
-          <li className="flex items-center mb-5">
-            <HelpOutlineIcon className="text-2xl mr-3" />
-            <Link href="/FAQ"><button className="text-base font-semibold">Questions</button></Link>
-          </li>
+          {sidebarItems[type] &&
+            sidebarItems[type].map((item, index) => (
+              <li key={index} className="flex items-center mb-5">
+                {item.icon}
+                <Link href={item.link}>
+                  <button className="text-base font-semibold">{item.text}</button>
+                </Link>
+              </li>
+            ))}
         </ul>
       </div>
     </div>
-  )
+  );
 }

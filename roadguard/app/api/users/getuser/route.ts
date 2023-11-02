@@ -35,7 +35,9 @@ export async function GET(request : NextRequest) {
         email: user.email,
         profileImage: user.profileImage,
         vehicle:user.vehicle,
-        phoneNumber:user.phoneNumber
+        phoneNumber:user.phoneNumber,
+        paid:user.paid,
+        type:user.type
       },
     );
   } catch (error) {
