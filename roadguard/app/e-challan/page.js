@@ -10,7 +10,7 @@ const EChallanPage = () => {
       try {
         const res = await axios.get("/api/users/getuser");
         setPaid(res.data.paid);
-        console.log(res.data);
+       
       } catch (err) {
         console.log(err);
       }
