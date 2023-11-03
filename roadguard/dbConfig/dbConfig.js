@@ -25,10 +25,7 @@ export async function connect() {
 //     try {
 //         await mongoose.connect(process.env.MONGO_URI, {
 //             useNewUrlParser: true,
-//             useUnifiedTopology: true,
-//         });
-
-//         const connection = mongoose.connection;
+//             useUnifiedTopology: 
 
 //         connection.on("connected", () => {
 //             console.log("Database connected");
