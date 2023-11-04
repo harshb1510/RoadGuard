@@ -19,10 +19,7 @@ export async function connect() {
     }
 }
 
-//         connection.on("error", (err) => {
-//             console.error("Error connecting to database:", err);
-//             process.exit(1);
-//         });
+//         connection.on("error", (err) => 
 //     } catch (error) {
 //         console.error("Error connecting to database:", error);
 //     }
