@@ -18,12 +18,6 @@ export async function connect() {
         console.log("Error connecting to database");
     }
 }
-    
-// import mongoose from "mongoose";
-
-//         connection.on("connected", () => {
-//             console.log("Database connected");
-//         });
 
 //         connection.on("error", (err) => {
 //             console.error("Error connecting to database:", err);
